@@ -6,13 +6,13 @@ def analyze_text(text: str) -> dict:
         raise ValueError("Input must be a string")
 
     # Normalize text
-    text = text.lower().strip()
+        text = text.lower().strip()
 
     # Extract words
     words = re.findall(r'\b\w+\b', text)
 
     if not words:
-        return {
+            return {
             "word_count": 0,
             "unique_words": 0,
             "most_common": [],
@@ -21,7 +21,7 @@ def analyze_text(text: str) -> dict:
 
     word_count = len(words)
     unique_words = len(set(words))
-    most_common = Counter(words).most_common(3)
+         most_common = Counter(words).most_common(3)
     average_length = sum(len(word) for word in words) / word_count
 
     return {
