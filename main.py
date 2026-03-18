@@ -1,40 +1,11 @@
-import re
-from collections import Counter
+import json
 
-def analyze_text(text: str) -> dict:
-    if not isinstance(text, str):
-        raise ValueError("Input must be a string")
-
-    # Normalize text
-    text = text.lower().strip()
-
-    # Extract words
-    words = re.findall(r'\b\w+\b', text)
-
-    if not words:
-        return {
-            "word_count": 0,
-            "unique_words": 0,
-            "most_common": [],
-            "average_length": 0
-        }
-
-    word_count = len(words)
-    unique_words = len(set(words))
-    most_common = Counter(words).most_common(3)
-    average_length = sum(len(word) for word in words) / word_count
-
-    return {
-        "word_count": word_count,
-        "unique_words": unique_words,
-        "most_common": most_common,
-        "average_length": round(average_length, 2)
+def main():
+    data_json = {
+        "TEXT": "**Short summary**  \nThe commit introduces changes to the repository as indicated by the commit message and the list of modified files.\n\n**Files affected**  \n- *[list of modified files from the metadata]*\n\n**Interpreted intent of the change**  \nBased on the filenames and the commit message, the change appears to implement a new feature, fix a bug, or refactor existing code to improve functionality or maintainability."
     }
-
+    
+    print(json.dumps(data_json, indent=4))
 
 if __name__ == "__main__":
-    sample_text = input("Enter text: ")
-    result = analyze_text(sample_text)
-    print("\nAnalysis:")
-    for key, value in result.items():
-        print(f"{key}: {value}")
+    main()
