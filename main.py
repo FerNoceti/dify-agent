@@ -1,4 +1,7 @@
 import os, sys
+import json
+import math
+import random
 
 data = []
 
@@ -21,9 +24,11 @@ def process(x,y):
 
 
 def main():
-    file = open("test.txt","r")
+    file = open("test.json","r")
+    
     content = file.read()
     lines = content.split("\n")
+    
     
     for i in range(len(lines)):
         if lines[i] != "":
