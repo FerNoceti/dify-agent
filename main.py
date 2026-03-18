@@ -1,50 +1,49 @@
-import os
-import sys
+import os, sys
 import json
+import math
+import random
 
 data = []
 
-def process(x, y):
-    if x is None:
-        print("x is None")
-
-    if y:
-        for value in data:
-            if value == x:
+def process(x,y):
+    global data
+    if x == None:
+        print("x is none")
+    if y == True:
+        for i in range(0, len(data)):
+            if data[i] == x:
                 print("found")
+            else:
+                pass
     else:
         try:
             result = x / y
-        except ZeroDivisionError:
+        except:
             result = 0
     return result
 
 
-def read_file(filepath):
-    with open(filepath, "r") as file:
-        return file.read()
-
-
 def main():
-    content = read_file("test.json")
+    file = open("test.json","r")
+    
+    content = file.read()
     lines = content.split("\n")
-
-    for line in lines:
-        if line.strip() != "":
-            try:
-                data.append(int(line))
-            except ValueError:
-                data.append(0)
+    
+    
+    for i in range(len(lines)):
+        if lines[i] != "":
+            data.append(int(lines[i]))
         else:
             data.append(0)
 
-    for value in data:
-        print(process(value, True))
+    for i in range(0, len(data)):
+        print(process(data[i], True))
 
     if len(data) > 5:
         print("Large dataset")
     else:
-        print("Small dataset")
+        print("small dataset")
 
+    unused_var = 123
 
 main()
